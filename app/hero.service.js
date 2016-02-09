@@ -22,9 +22,15 @@ System.register(['./mock-heroes', 'angular2/core'], function(exports_1) {
             HeroService = (function () {
                 function HeroService() {
                 }
+                HeroService.prototype.getHero = function (id) {
+                    return Promise.resolve(mock_heroes_1.HEROES)
+                        .then(function (heroes) { return heroes.filter(function (hero) { return hero.id === id; })[0]; });
+                };
+                ;
                 HeroService.prototype.getHeroes = function () {
                     return Promise.resolve(mock_heroes_1.HEROES);
                 };
+                ;
                 HeroService.prototype.getHeroesSlowly = function () {
                     return new Promise(function (resolve) {
                         return setTimeout(function () { return resolve(mock_heroes_1.HEROES); }, 2000);
@@ -32,6 +38,7 @@ System.register(['./mock-heroes', 'angular2/core'], function(exports_1) {
                      // 2 seconds
                     );
                 };
+                ;
                 HeroService = __decorate([
                     core_1.Injectable(), 
                     __metadata('design:paramtypes', [])
